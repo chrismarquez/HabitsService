@@ -1,0 +1,19 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "sourceMap": true,
+        "watch": true,
+        "strict": true,
+        "outDir": "dist/",
+        "lib": [
+            "dom", "es2015"
+        ]
+    },
+    "include": [
+        "src/**/*", "spec/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
