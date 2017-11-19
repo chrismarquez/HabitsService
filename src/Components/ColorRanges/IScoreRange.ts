@@ -1,4 +1,4 @@
-import IHabitScore from "./IHabitScore";
+import IHabitScore from "../IHabitScore";
 
 
 export default abstract class IScoreRange {
@@ -9,7 +9,7 @@ export default abstract class IScoreRange {
         this.habitScore = habitScore;
     }
     
-    public abstract getScore(): number;
+    public abstract getDeltaScore(): number;
     
     public getColor(): string {
         return this.constructor.name;
