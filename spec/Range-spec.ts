@@ -1,20 +1,18 @@
-import IHabitScore from "../src/Components/IHabitScore";
-import BaseHabitScore from "../src/Components/BaseHabitScore";
-import RangeFactory from "../src/Components/ColorRanges/RangeFactory";
-import IScoreRange from "../src/Components/ColorRanges/IScoreRange";
-import BlueScore from "../src/Components/ColorRanges/BlueRange";
-import MediumScore from "../src/Components/MediumScore";
-import GoodScore from "../src/Components/GoodScore";
 import BadScore from "../src/Components/BadScore";
-import HardScore from "../src/Components/HardScore";
+import BaseHabitScore from "../src/Components/BaseHabitScore";
+import BlueScore from "../src/Components/ColorRanges/BlueRange";
+import IScoreRange from "../src/Components/ColorRanges/IScoreRange";
+import RangeFactory from "../src/Components/ColorRanges/RangeFactory";
 import EasyScore from "../src/Components/EasyScore";
-import { currentId } from "async_hooks";
-
+import GoodScore from "../src/Components/GoodScore";
+import HardScore from "../src/Components/HardScore";
+import IHabitScore from "../src/Components/IHabitScore";
+import MediumScore from "../src/Components/MediumScore";
 
 let score: IHabitScore;
 
 describe("Score Ranges", () => {
-    
+
     beforeAll(() => score = new BaseHabitScore());
 
     it("Range Factory", () => {
@@ -31,43 +29,43 @@ describe("Score Ranges", () => {
     });
 
     it("BlueRange", () => {
-        let currentScore = 56;
-        let mediumHabit: IHabitScore = new MediumScore(score);
+        const currentScore = 56;
+        const mediumHabit: IHabitScore = new MediumScore(score);
         testOfGoodAndBad(mediumHabit, currentScore, 1, -4);
     });
 
     it("GreenRange", () => {
-        let currentScore = 43;
-        let hardHabit: IHabitScore = new HardScore(score);
+        const currentScore = 43;
+        const hardHabit: IHabitScore = new HardScore(score);
         testOfGoodAndBad(hardHabit, currentScore, 3, -6);
     });
 
     it("YellowRange", () => {
-        let currentScore = 22;
-        let easyHabit: IHabitScore = new EasyScore(score);
+        const currentScore = 22;
+        const easyHabit: IHabitScore = new EasyScore(score);
         testOfGoodAndBad(easyHabit, currentScore, 2, -2);
     });
 
     it("OrangeRange", () => {
-        let currentScore = 8;
-        let hardHabit: IHabitScore = new HardScore(score);
+        const currentScore = 8;
+        const hardHabit: IHabitScore = new HardScore(score);
         testOfGoodAndBad(hardHabit, currentScore, 6, -9);
     });
 
     it("RedRange", () => {
-        let currentScore = -5;
-        let mediumHabit: IHabitScore = new MediumScore(score);
+        const currentScore = -5;
+        const mediumHabit: IHabitScore = new MediumScore(score);
         testOfGoodAndBad(mediumHabit, currentScore, 4, -8);
     });
 
     function testOfGoodAndBad(
         habit: IHabitScore,
-        currentScore: number, 
+        currentScore: number,
         expectedGoodDelta: number,
         expectedBadDelta: number
     ): void {
-        let goodCustomHabit: IHabitScore = new GoodScore(habit);
-        let badCustomHabit: IHabitScore = new BadScore(habit);
+        const goodCustomHabit: IHabitScore = new GoodScore(habit);
+        const badCustomHabit: IHabitScore = new BadScore(habit);
         let range: IScoreRange = RangeFactory.create(goodCustomHabit, currentScore);
         expect(range.getDeltaScore()).toEqual(expectedGoodDelta);
         range = RangeFactory.create(badCustomHabit, currentScore);

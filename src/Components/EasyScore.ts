@@ -1,7 +1,6 @@
 
 import DecoratorScore from "./DecoratorScore";
 
-
 export default class EasyScore extends DecoratorScore {
 
     public getScore(): number {

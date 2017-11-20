@@ -6,7 +6,7 @@ export default class RepositorySelector {
     private static readonly storageOption: number = 2;
 
     public static get repository(): Promise<IHabitRepository> {
-        switch(process.argv[RepositorySelector.storageOption]) {
+        switch (process.argv[RepositorySelector.storageOption]) {
         case "storage":
             return MongoRepository.getInstance();
         default:

@@ -1,12 +1,11 @@
-import IScoreRange from "./IScoreRange";
-import GoodScore from "../GoodScore";
 import BadScore from "../BadScore";
-
+import GoodScore from "../GoodScore";
+import IScoreRange from "./IScoreRange";
 
 export default class GreenRange extends IScoreRange {
 
     public getDeltaScore(): number {
-        switch(this.habitScore.constructor) {
+        switch (this.habitScore.constructor) {
         case GoodScore:
             return this.habitScore.getScore() / 2;
         case BadScore:

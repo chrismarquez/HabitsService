@@ -1,30 +1,32 @@
 
-import * as Express from "express"
+import * as Express from "express";
 import IHabitRepository from "../Repositories/IHabitRepository";
-import Habit from "../Models/Habit";
-import ConflictError from "../Errors/ConflictError";
-import NotFoundError from "../Errors/NotFoundError";
-import exceptionally from "../Errors/Exceptionally"
 import RepositorySelector from "../Repositories/RepositorySelector";
+
+import Habit from "../Models/Habit";
+
+import ConflictError from "../Errors/ConflictError";
+import exceptionally from "../Errors/Exceptionally";
+import NotFoundError from "../Errors/NotFoundError";
 import UnauthorizedError from "../Errors/UnauthorizedError";
 
-let router: Express.Router = Express.Router();
+const router: Express.Router = Express.Router();
 
 router.get("/", (req, res) => exceptionally(res, async () => {
-    let userId = req.header("userId") as string;
-    if (userId == undefined) throw new UnauthorizedError("userId not provided");
-    let repository: IHabitRepository = await RepositorySelector.repository;
-    let habits = await repository.getAll(userId);
+    const userId = req.header("userId") as string;
+    if (userId === undefined) throw new UnauthorizedError("userId not provided");
+    const repository: IHabitRepository = await RepositorySelector.repository;
+    const habits = await repository.getAll(userId);
     res.statusCode = 200;
     res.json(habits);
 }));
 
 router.post("/", (req, res) => exceptionally(res, async () => {
-    let habit: Habit = req.body;
+    const habit: Habit = req.body;
     habit.score = 10;
     habit.color = "OrangeRange";
-    let repository: IHabitRepository = await RepositorySelector.repository;
-    let result = await repository.create(habit.userId, habit);
+    const repository: IHabitRepository = await RepositorySelector.repository;
+    const result = await repository.create(habit.userId, habit);
     res.statusCode = 204;
     res.end();
 }));

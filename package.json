@@ -18,7 +18,8 @@
     "tslint": "^5.8.0"
   },
   "devDependencies": {
-    "jasmine-spec-reporter": "^4.2.1"
+    "jasmine-spec-reporter": "^4.2.1",
+    "typescript": "^2.6.1"
   },
   "scripts": {
     "start": "node dist/src/app.js storage",

@@ -1,14 +1,15 @@
 
-import * as Express from "express"
+import * as Express from "express";
+import Habit from "../Models/Habit";
+
 import exceptionally from "../Errors/Exceptionally";
 import IHabitRepository from "../Repositories/IHabitRepository";
-import Habit from "../Models/Habit";
 import RepositorySelector from "../Repositories/RepositorySelector";
 
-let router: Express.Router = Express.Router();
+const router: Express.Router = Express.Router();
 
 router.get("/:title", (req, res) => exceptionally(res, async () => {
-    const title = req.params["title"] as string;
+    const title = req.params.title as string;
     console.log(title);
     const userId = req.header("userId") as string;
     const repository: IHabitRepository = await RepositorySelector.repository;
@@ -18,7 +19,7 @@ router.get("/:title", (req, res) => exceptionally(res, async () => {
 }));
 
 router.delete("/:title", (req, res) => exceptionally(res, async () => {
-    const title = req.params["title"] as string;
+    const title = req.params.title as string;
     const userId = req.header("userId") as string;
     const repository: IHabitRepository = await RepositorySelector.repository;
     await repository.delete(userId, title);
@@ -27,7 +28,7 @@ router.delete("/:title", (req, res) => exceptionally(res, async () => {
 }));
 
 router.put("/:title", (req, res) => exceptionally(res, async () => {
-    const title = req.params["title"] as string;
+    const title = req.params.title as string;
     const habit: Habit = req.body;
     const repository: IHabitRepository = await RepositorySelector.repository;
     await repository.update(habit.userId, habit);

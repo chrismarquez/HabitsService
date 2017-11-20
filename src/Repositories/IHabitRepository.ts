@@ -1,4 +1,4 @@
-import Habit from "../Models/Habit"
+import Habit from "../Models/Habit";
 
 export default interface IHabitRepository {
     getAll(userId: string): Promise<Habit[]>;

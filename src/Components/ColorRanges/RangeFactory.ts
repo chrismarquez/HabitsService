@@ -1,11 +1,11 @@
-import IScoreRange from "./IScoreRange";
-import IHabitScore from "../IHabitScore";
-import BlueRange from "./BlueRange"
-import GreenRange from "./GreenRange";
-import YellowRange from "./YellowRange";
-import OrangeRange from "./OrangeRange";
 import { readSync } from "fs";
+import IHabitScore from "../IHabitScore";
+import BlueRange from "./BlueRange";
+import GreenRange from "./GreenRange";
+import IScoreRange from "./IScoreRange";
+import OrangeRange from "./OrangeRange";
 import RedRange from "./RedRange";
+import YellowRange from "./YellowRange";
 
 export default class RangeFactory {
 

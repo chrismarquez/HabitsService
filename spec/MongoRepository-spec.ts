@@ -11,7 +11,9 @@ const baseTestHabit: Habit = {
     },
     title: "Test Habit",
     type: "both",
-    userId: "chrismarquez"
+    userId: "chrismarquez",
+    score: 20,
+    color: "YellowRange"
 };
 
 describe("Tests for MongoRepository", () => {
