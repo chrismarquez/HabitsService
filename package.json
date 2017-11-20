@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Code base for a habit microservice",
   "main": "dist/src/app.js",
+  "watch": {
+    "start": "dist/**/*.js"
+  },
   "dependencies": {
     "@types/body-parser": "^1.16.7",
     "@types/express": "^4.0.39",
@@ -18,6 +21,8 @@
     "jasmine-spec-reporter": "^4.2.1"
   },
   "scripts": {
+    "start": "node dist/src/app.js storage",
+    "watch": "npm-watch",
     "test": "jasmine"
   },
   "repository": {

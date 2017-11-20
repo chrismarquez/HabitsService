@@ -5,6 +5,8 @@ export default interface Habit {
     duration: Duration;
     difficulty: string;
     type: string;
+    score: number;
+    color: string;
 }
 
 interface Duration {
