@@ -7,18 +7,17 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/dist/src/debug"
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/dist/src/app",
+            "args": [
+                "cache", "3000"
+            ]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/spec/helpers/ts_console.ts",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
-            ]
+            "name": "Debug",
+            "program": "${workspaceFolder}/dist/src/debug"
         }
     ]
 }

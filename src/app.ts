@@ -7,8 +7,8 @@ import BasicRouter from "./Routers/BasicRouter";
 import HabitRouter from "./Routers/HabitRouter";
 import MarkRouter from "./Routers/MarkRouter";
 
-if (process.argv.length !== 3) {
-    throw new Error("Init program as node app.js storageMode");
+if (process.argv.length !== 4) {
+    throw new Error("Init program as node app.js storageMode port");
 }
 
 const app: Application = Express();
@@ -29,4 +29,4 @@ app.use("/", BasicRouter);
 app.use("/", HabitRouter);
 app.use("/mark", MarkRouter);
 
-app.listen(80);
+app.listen(parseInt(process.argv[3], 10));

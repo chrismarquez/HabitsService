@@ -1,7 +1,7 @@
 import Habit from "../src/Models/Habit";
-import MongoRepository from "../src/Repositories/MongoRepository";
+import CacheRepository from "../src/Repositories/CacheRepository";
 
-let repository: MongoRepository;
+let repository: CacheRepository;
 let result: boolean;
 const baseTestHabit: Habit = {
     color: "YellowRange",
@@ -12,9 +12,9 @@ const baseTestHabit: Habit = {
     userId: "chrismarquez"
 };
 
-describe("Tests for MongoRepository", () => {
+describe("Tests for CacheRepository", () => {
 
-    beforeAll(async () => repository = await MongoRepository.getInstance());
+    beforeAll(async () => repository = await CacheRepository.getInstance());
 
     beforeEach(async () => result = await repository.create(baseTestHabit.userId, baseTestHabit));
 

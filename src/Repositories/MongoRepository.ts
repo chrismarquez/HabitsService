@@ -55,7 +55,7 @@ export default class MongoRepository implements IHabitRepository {
 
     public async update(userId: string, habit: Habit): Promise<boolean> {
         const habitExists = await this.habitExists(userId, habit.title);
-        if (!habitExists) { throw new NotFoundError("Habit does not exist"); }
+        if (!habitExists) throw new NotFoundError("Habit does not exist");
         return await MongoDatabase.update({
             "title": habit.title,
             "userId": userId
@@ -64,7 +64,7 @@ export default class MongoRepository implements IHabitRepository {
 
     public async delete(userId: string, title: string): Promise<boolean> {
         const habitExists = await this.habitExists(userId, title);
-        if (!habitExists) { throw new NotFoundError("Habit does not exist"); }
+        if (!habitExists) throw new NotFoundError("Habit does not exist");
         const result = await MongoDatabase.delete({
             "title": title,
             "userId": userId

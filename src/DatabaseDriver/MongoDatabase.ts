@@ -3,11 +3,11 @@ import * as Mongo from "mongodb";
 export default class MongoDatabase {
 
     private static get uri(): string {
-        const shellString = `mongodb://chrismarquez:Csma0012@
-        cluster0-shard-00-00-crrrc.mongodb.net:27017,
-        cluster0-shard-00-01-crrrc.mongodb.net:27017,
-        cluster0-shard-00-02-crrrc.mongodb.net:27017/
-        <database>?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`;
+        let shellString = "mongodb://chrismarquez:Csma0012@";
+        shellString += "cluster0-shard-00-00-crrrc.mongodb.net:27017,";
+        shellString += "cluster0-shard-00-01-crrrc.mongodb.net:27017,";
+        shellString += "cluster0-shard-00-02-crrrc.mongodb.net:27017/";
+        shellString += "<database>?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
         return shellString.replace("<database>", MongoDatabase.databaseName);
     }
 

@@ -25,7 +25,7 @@ export default class ScoreMarker {
         const currentHabit = await repository.get(userId, title);
         let habitScore: IHabitScore = new BaseHabitScore();
         habitScore = ScoreMarker.selectDifficulty(habitScore, currentHabit);
-        habitScore = ScoreMarker.selectGoodness(habitScore, currentHabit);
+        habitScore = ScoreMarker.selectGoodness(habitScore, currentHabit, completed);
         const scoreRange: IScoreRange = RangeFactory.create(habitScore, currentHabit.score);
         currentHabit.score += scoreRange.getDeltaScore();
         currentHabit.color = RangeFactory.create(habitScore, currentHabit.score).getColor();
@@ -45,12 +45,22 @@ export default class ScoreMarker {
         }
     }
 
-    private static selectGoodness(habitScore: IHabitScore, habit: Habit): IHabitScore {
+    private static selectGoodness(
+        habitScore: IHabitScore,
+        habit: Habit,
+        completed: boolean
+    ): IHabitScore {
         switch (habit.type) {
         case "good":
             return new GoodScore(habitScore);
         case "bad":
             return new BadScore(habitScore);
+        case "both":
+            if (completed as boolean) {
+                return new GoodScore(habitScore);
+            } else {
+                return new BadScore(habitScore);
+            }
         default:
             throw new Error("Unsupported");
         }

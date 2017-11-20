@@ -31,6 +31,9 @@ router.put("/:title", (req, res) => exceptionally(res, async () => {
     const title = req.params.title as string;
     const habit: Habit = req.body;
     const repository: IHabitRepository = await RepositorySelector.repository;
+    const currentHabit: Habit = await repository.get(habit.userId, title);
+    habit.color = currentHabit.color;
+    habit.score = currentHabit.score;
     await repository.update(habit.userId, habit);
     res.statusCode = 201;
     res.end();

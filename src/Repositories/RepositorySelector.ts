@@ -1,3 +1,4 @@
+import CacheRepository from "./CacheRepository";
 import IHabitRepository from "./IHabitRepository";
 import MongoRepository from "./MongoRepository";
 
@@ -9,6 +10,8 @@ export default class RepositorySelector {
         switch (process.argv[RepositorySelector.storageOption]) {
         case "storage":
             return MongoRepository.getInstance();
+        case "cache":
+            return CacheRepository.getInstance();
         default:
             throw new Error("Unsupported");
         }
