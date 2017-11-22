@@ -1,5 +1,4 @@
 import fetch from "node-fetch";
-import { Headers } from "request";
 import Habit from "../Models/Habit";
 
 export default class ReportNotifier {
@@ -32,10 +31,10 @@ export default class ReportNotifier {
         });
     }
 
-    private static readonly url: string = "";
-    private static get headers(): Headers {
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
+    private static readonly url: string = "memogcia.me";
+    private static get headers(): any {
+        const headers: any = {};
+        headers["Content-Type"] = "application/json";
         return headers;
     }
 
