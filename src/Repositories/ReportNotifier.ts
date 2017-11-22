@@ -4,7 +4,7 @@ import Habit from "../Models/Habit";
 export default class ReportNotifier {
 
     public static async newHabit(habit: Habit) {
-        fetch(ReportNotifier.url, {
+        fetch(ReportNotifier.url + "habitCreated", {
             "body": JSON.stringify(habit),
             "headers": ReportNotifier.headers,
             "method": "POST"
@@ -13,10 +13,10 @@ export default class ReportNotifier {
     }
 
     public static async updateHabit(habit: Habit) {
-        fetch(ReportNotifier.url, {
+        fetch(ReportNotifier.url + "habitUpdated", {
             "body": JSON.stringify(habit),
             "headers": ReportNotifier.headers,
-            "method": "PUT"
+            "method": "POST"
         })
         .catch(err => console.error(err));
     }
@@ -26,7 +26,7 @@ export default class ReportNotifier {
             "title": title,
             "userId": userId
         };
-        fetch(ReportNotifier.url, {
+        fetch(ReportNotifier.url + "habitDeleted", {
             "body": JSON.stringify(payload),
             "headers": ReportNotifier.headers,
             "method": "POST"
@@ -34,7 +34,7 @@ export default class ReportNotifier {
         .catch(err => console.error(err));
     }
 
-    private static readonly url: string = "memogcia.me";
+    private static readonly url: string = "http://memogcia.me/habitsreport/";
     private static get headers(): any {
         const headers: any = {};
         headers["Content-Type"] = "application/json";
