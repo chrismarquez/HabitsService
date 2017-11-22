@@ -4,6 +4,7 @@ import Habit from "../Models/Habit";
 
 import exceptionally from "../Errors/Exceptionally";
 import IHabitRepository from "../Repositories/IHabitRepository";
+import ReportNotifier from "../Repositories/ReportNotifier";
 import RepositorySelector from "../Repositories/RepositorySelector";
 
 const router: Express.Router = Express.Router();
@@ -23,6 +24,7 @@ router.delete("/:title", (req, res) => exceptionally(res, async () => {
     const userId = req.header("userId") as string;
     const repository: IHabitRepository = await RepositorySelector.repository;
     await repository.delete(userId, title);
+    ReportNotifier.deleteHabit(userId, title).then(ack => console.log(ack));
     res.statusCode = 204;
     res.end();
 }));
@@ -35,6 +37,7 @@ router.put("/:title", (req, res) => exceptionally(res, async () => {
     habit.color = currentHabit.color;
     habit.score = currentHabit.score;
     await repository.update(habit.userId, habit);
+    ReportNotifier.updateHabit(habit).then(ack => console.log(ack));
     res.statusCode = 201;
     res.end();
 }));

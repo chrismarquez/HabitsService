@@ -6,4 +6,5 @@ export default interface Habit {
     type: string;
     score: number;
     color: string;
+    data?: string;
 }

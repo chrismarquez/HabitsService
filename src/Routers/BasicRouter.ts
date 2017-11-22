@@ -9,6 +9,7 @@ import ConflictError from "../Errors/ConflictError";
 import exceptionally from "../Errors/Exceptionally";
 import NotFoundError from "../Errors/NotFoundError";
 import UnauthorizedError from "../Errors/UnauthorizedError";
+import ReportNotifier from "../Repositories/ReportNotifier";
 
 const router: Express.Router = Express.Router();
 
@@ -25,6 +26,9 @@ router.post("/", (req, res) => exceptionally(res, async () => {
     const habit: Habit = req.body;
     habit.score = 10;
     habit.color = "OrangeRange";
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    ReportNotifier.newHabit(habit).then(ack => console.log(ack));
     const repository: IHabitRepository = await RepositorySelector.repository;
     const result = await repository.create(habit.userId, habit);
     res.statusCode = 204;
