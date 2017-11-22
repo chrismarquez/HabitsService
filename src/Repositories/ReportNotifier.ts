@@ -4,7 +4,7 @@ import Habit from "../Models/Habit";
 export default class ReportNotifier {
 
     public static async newHabit(habit: Habit) {
-        return await fetch(ReportNotifier.url, {
+        fetch(ReportNotifier.url, {
             "body": JSON.stringify(habit),
             "headers": ReportNotifier.headers,
             "method": "POST"
@@ -12,7 +12,7 @@ export default class ReportNotifier {
     }
 
     public static async updateHabit(habit: Habit) {
-        return await fetch(ReportNotifier.url, {
+        fetch(ReportNotifier.url, {
             "body": JSON.stringify(habit),
             "headers": ReportNotifier.headers,
             "method": "PUT"
@@ -24,7 +24,7 @@ export default class ReportNotifier {
             "title": title,
             "userId": userId
         };
-        return await fetch(ReportNotifier.url, {
+        fetch(ReportNotifier.url, {
             "body": JSON.stringify(payload),
             "headers": ReportNotifier.headers,
             "method": "POST"
