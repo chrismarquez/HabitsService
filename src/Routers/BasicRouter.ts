@@ -26,8 +26,6 @@ router.post("/", (req, res) => exceptionally(res, async () => {
     const habit: Habit = req.body;
     habit.score = 10;
     habit.color = "OrangeRange";
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
     ReportNotifier.newHabit(habit).then(ack => console.log(ack));
     const repository: IHabitRepository = await RepositorySelector.repository;
     const result = await repository.create(habit.userId, habit);

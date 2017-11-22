@@ -8,7 +8,8 @@ export default class ReportNotifier {
             "body": JSON.stringify(habit),
             "headers": ReportNotifier.headers,
             "method": "POST"
-        });
+        })
+        .catch(err => console.error(err));
     }
 
     public static async updateHabit(habit: Habit) {
@@ -16,7 +17,8 @@ export default class ReportNotifier {
             "body": JSON.stringify(habit),
             "headers": ReportNotifier.headers,
             "method": "PUT"
-        });
+        })
+        .catch(err => console.error(err));
     }
 
     public static async deleteHabit(userId: string, title: string) {
@@ -28,7 +30,8 @@ export default class ReportNotifier {
             "body": JSON.stringify(payload),
             "headers": ReportNotifier.headers,
             "method": "POST"
-        });
+        })
+        .catch(err => console.error(err));
     }
 
     private static readonly url: string = "memogcia.me";
